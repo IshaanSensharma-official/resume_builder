@@ -70,7 +70,7 @@ const ResumeBuilder = () => {
                             from-green-500 to-green-600 border-none transition-all duration-2000"
                             style={{width: `%{activeSectionIndex * 100 / (sections.length - 1)}
                             %`}} />
-
+// This part is important
                             {/* Section Navigation */}
                             <div className="flex justify-between items-center mb-6 border-b
                             border-gray-300 py-1">
