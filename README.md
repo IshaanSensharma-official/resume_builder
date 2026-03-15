@@ -43,31 +43,6 @@ This project leverages modern frontend technologies:
 6. ESLint for maintaining code quality
 These technologies enable rapid development while maintaining performance and scalability.
 
-📁 Project Structure
-resume_builder/
-client/
- ├── public/
- │   └── vite.svg
- │
- ├── src/
- │   ├── assets/
- │   │   └── assets.js
- │   │
- │   ├── components/
- │   │
- │   ├── pages/
- │   │
- │   └── App.jsx
- │
- ├── index.html
- ├── package.json
- ├── vite.config.js
- └── eslint.config.js
-
-resume-builder-assets/
- └── assets/
-The project is structured to separate UI components, assets, and configuration files for better maintainability.
-
 ✨ Features
 Key capabilities of the application include:
 
