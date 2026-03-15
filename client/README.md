@@ -37,32 +37,6 @@ Key architectural components include:
 3. Modular asset management
 
 
-
-Project Structure
-resume_builder/
-│
-├── client/
-│   ├── public/
-│   │   └── vite.svg
-│   │
-│   ├── src/
-│   │   ├── assets/
-│   │   │   └── assets.js
-│   │   │
-│   │   ├── components/
-│   │   │
-│   │   ├── pages/
-│   │   │
-│   │   └── App.jsx
-│   │
-│   ├── index.html
-│   ├── package.json
-│   ├── vite.config.js
-│   └── eslint.config.js
-│
-└── resume-builder-assets/
-    └── assets/
-
 Features
 1. Structured resume creation workflow
 2. User-friendly form interface
