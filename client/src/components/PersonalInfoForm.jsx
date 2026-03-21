@@ -3,7 +3,7 @@ import React from 'react'
 
 const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground}) => {
     
-    const handleChange = () =>{
+    const handleChange = (field, value) => {
         onChange({...data, [field]: value})
     }
 
@@ -24,7 +24,7 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground
         <div className='flex items-center gap-2'>
             <label>
                 {data.image ? (
-                    <img src={typeof data.image === 'string' ? data.image : URL.createObjectURL()} alt="user-image" 
+                    <img src={typeof data.image === 'string' ? data.image : URL.createObjectURL(data.image)} alt="user-image" 
                     className='w-16 h-16 rounded-full object-cover mt-5 ring ring-slate-300
                     hover:opacity-80'/> 
                 ) : (

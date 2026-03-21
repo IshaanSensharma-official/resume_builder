@@ -4,6 +4,8 @@ import { ArrowLeft, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, 
 import { dummyResumeData } from '../assets/assets'
 import PersonalInfoForm from '../components/PersonalInfoForm'
 import ResumePreview from '../components/ResumePreview'
+import TemplateSelector from '../components/TemplateSelector'
+import ColorPicker from '../components/ColorPicker'
 
 const ResumeBuilder = () => {
 
@@ -68,13 +70,18 @@ const ResumeBuilder = () => {
                             border-gray-200"/>
                             <hr className="absolute top-0 left-0 h-1 bg-gradient-to-r
                             from-green-500 to-green-600 border-none transition-all duration-2000"
-                            style={{width: `%{activeSectionIndex * 100 / (sections.length - 1)}
-                            %`}} />
-// This part is important
+                            style={{ width: `${(activeSectionIndex * 100) / (sections.length - 1)}%` }} />
+                            
                             {/* Section Navigation */}
                             <div className="flex justify-between items-center mb-6 border-b
                             border-gray-300 py-1">
-                                <div></div>
+                                <div className='flex items-center gap-2'>
+                                    <TemplateSelector selectedTemplate={resumeData.template} onChange=
+                                    {(template)=> setResumeData(prev => ({...prev, template}))}/>
+                                    <ColorPicker selectedColor={resumeData.accent_color} onChange=
+                                    {(color)=>setResumeData(prev => ({...prev, accent_color:
+                                        color}))}/>
+                                </div>
                                 <div className='flex items-center'>
                                     {activeSectionIndex !== 0 && (
                                         <button onClick={()=> setActiveSectionIndex((prevIndex)=> Math.
@@ -87,9 +94,9 @@ const ResumeBuilder = () => {
                                     <button onClick={()=> setActiveSectionIndex((prevIndex)=> Math.min
                                     (prevIndex + 1, sections.length - 1))} className={`flex
                                     items-center gap-1 p-3 rounded-lg text-sm font-medium
-                                    text-gray-600 hover:bg-gray-50 transition-all $
-                                    {activeSectionIndex === sections.length -1 && 'opacity-50'}`} 
-                                    disabled={activeSectionIndex === 0}>
+                                    text-gray-600 hover:bg-gray-50 transition-all ${
+                                    activeSectionIndex === sections.length -1 ? 'opacity-50' : ''}`} 
+                                    disabled={activeSectionIndex === sections.length - 1}>
                                             Next <ChevronRight className="size-4"/>
                                         </button>
                                 </div>
