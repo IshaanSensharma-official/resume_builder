@@ -1,4 +1,4 @@
-import mongoose  from "mongoose";
+import mongoose from "mongoose";
 
 const ResumeSchema = new mongoose.Schema({
     userId: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
@@ -28,7 +28,7 @@ const ResumeSchema = new mongoose.Schema({
             is_current: { type: Boolean },
         }
     ],
-    projects: [
+    project: [          // ✅ was "projects" — renamed to "project" to match frontend
         {
             name: { type: String },
             type: { type: String },
@@ -49,4 +49,3 @@ const ResumeSchema = new mongoose.Schema({
 const Resume = mongoose.model('Resume', ResumeSchema)
 
 export default Resume
-

@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { dummyResumeData } from '../assets/assets'
 import ResumePreview from '../components/ResumePreview'
 import { ArrowLeftIcon } from 'lucide-react'
 import Loader from '../components/Loader'
+import api from '../configs/api'
 
 const Preview = () => {
-    const { resumeId } = useParams()  // ✅ matches :resumeId in App.jsx
+    const { resumeId } = useParams()
 
     const [isLoading, setIsLoading] = useState(true)
     const [resumeData, setResumeData] = useState(null)
 
+    const loadResume = async () => {
+        try {
+            setIsLoading(true)
+            const { data } = await api.get('/api/resumes/public/' + resumeId)
+            setResumeData(data.resume)
+        } catch (error) {
+            console.log(error.message)
+            setResumeData(null)
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    // ✅ actually calls loadResume instead of using dummyResumeData
     useEffect(() => {
-        setIsLoading(true)
-        const found = dummyResumeData.find(resume => resume._id === resumeId) || null
-        setResumeData(found)
-        setIsLoading(false)
+        loadResume()
     }, [resumeId])
 
     return resumeData ? (
@@ -38,8 +49,8 @@ const Preview = () => {
                     <p className='text-center text-6xl text-slate-400 font-medium'>
                         Resume not found
                     </p>
-                    <a href="/" className='mt-6 bg-green-500 hover:bg-green-600 
-                    text-white rounded-full px-6 h-9 m-1 ring-offset-1 ring-1 
+                    <a href="/" className='mt-6 bg-green-500 hover:bg-green-600
+                    text-white rounded-full px-6 h-9 m-1 ring-offset-1 ring-1
                     ring-green-400 flex items-center transition-colors'>
                         <ArrowLeftIcon className='mr-2 size-4' />
                         go to home page

@@ -12,7 +12,7 @@ import ProjectForm from '../components/ProjectForm'
 import SkillsForm from '../components/SkillsForm'
 import { useSelector } from 'react-redux'
 import api from '../configs/api.js'
-import toast from 'react-hot-toast'  // ✅ was missing
+import toast from 'react-hot-toast'
 
 const ResumeBuilder = () => {
 
@@ -25,7 +25,7 @@ const ResumeBuilder = () => {
         personal_info: {},
         experience: [],
         education: [],
-        project: [],
+        project: [],        // ✅ "project" not "projects" — matches schema and all templates
         skills: [],
         template: "classic",
         accent_color: "#3B82F6",
@@ -67,7 +67,6 @@ const ResumeBuilder = () => {
     const saveResume = async () => {
         let updatedResumeData = structuredClone(resumeData)
 
-        // remove image object from resumeData copy before sending as JSON
         if (typeof resumeData.personal_info.image === 'object') {
             delete updatedResumeData.personal_info.image
         }
@@ -115,7 +114,6 @@ const ResumeBuilder = () => {
         if (navigator.share) {
             navigator.share({ url: resumeUrl, text: "My Resume" })
         } else {
-            // fallback: copy to clipboard
             navigator.clipboard.writeText(resumeUrl)
             toast.success('Link copied to clipboard!')
         }
@@ -212,8 +210,8 @@ const ResumeBuilder = () => {
                                 )}
                                 {activeSection.id === 'projects' && (
                                     <ProjectForm
-                                        data={resumeData.project}
-                                        onChange={(data) => setResumeData(prev => ({ ...prev, project: data }))}
+                                        data={resumeData.project}        // ✅ "project" not "projects"
+                                        onChange={(data) => setResumeData(prev => ({ ...prev, project: data }))}  // ✅
                                     />
                                 )}
                                 {activeSection.id === 'skills' && (
@@ -224,7 +222,6 @@ const ResumeBuilder = () => {
                                 )}
                             </div>
 
-                            {/* ✅ Fixed: saveResume() called (invoked), not passed as reference */}
                             <button
                                 onClick={() => toast.promise(saveResume(), {
                                     loading: 'Saving...',
