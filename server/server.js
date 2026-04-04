@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(cors({
     origin: [
         'http://localhost:5173',
-        'https://resume-builder-yourname.vercel.app'  // ✅ replace with your real Vercel URL after deploy
+        'https://resume-builder-phi-ochre.vercel.app'  // ✅ your real Vercel URL
     ],
     credentials: true
 }))
